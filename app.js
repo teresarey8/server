@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const port = process.env.port;
 app.use(express.static('public'))
+//middleware
 app.use(express.urlencoded({
     extended: true
 }))
