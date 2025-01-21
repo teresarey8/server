@@ -7,6 +7,7 @@ app.use(express.static('public'))
 app.use(express.urlencoded({
     extended: true
 }))
+app.use(express.json());
 app.get('/', (req, res) => {
     res.send('Bienvenidos a mi aplicación web, adios')
 })
@@ -16,19 +17,18 @@ app.post('/saludo', (req, res) => {
     res.send('Hola ' + nombre + '' + contrasena)
 })
 app.post('/factorial', (req, res) => {
-    const nombre = req.body.numero;
+    const numero = req.body.numero;
     if (numero == undefined || isNaN(numero)) {
-        return res.status(400).send("Numero no válido")
+        return res.status(400).send("Numero no válido");
     }
     const factorial = (n) => {
-        if (n == 0) return1;
+        if (n == 0) return 1;
         return n * factorial(n - 1);
-    }
-    const resultado = factorial(Number(numero))
-    res.send('El factorial de '+numero+' es '+resultado)
+    };
+    const resultado = factorial(Number(numero));
+    res.send('El factorial de ' + numero + ' es ' + resultado);
+});
 
-    res.send('Hola ' + nombre + '' + contrasena)
-})
 app.get('/precios', (req, res) => {
     res.send('<h1>Precios</h1><hr><p>Ordenador:1000€</p>')
 })
